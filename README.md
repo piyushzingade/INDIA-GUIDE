@@ -40,3 +40,48 @@ To set up the project locally, follow these steps:
 ```bash
 git clone https://github.com/your-username/india-guide.git
 cd india-guide
+```
+## Install Dependencies
+### Using npm:
+```bash
+npm install
+```
+
+### Using yarn:
+```bash
+yarn install
+```
+
+## Tailwind CSS Setup
+### Initialize it using the following command:
+```bash
+
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+// tailwind.config.js
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}", // Adjust paths as needed
+  ],
+  darkMode: 'class', // Enable class-based dark mode
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+
+```
+## Running project 
+### To run the development server:
+```bash
+npm run dev
+
+
+```
+
+## Author
+
+-Piyush
+-Siddhita 
