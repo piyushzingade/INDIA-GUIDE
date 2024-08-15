@@ -106,7 +106,7 @@ export default function Footer() {
                 <div className="flex flex-col">
                     <h3 className="font-bold mb-2">SHOP</h3>
                     <ul className="space-y-1 text-sm">
-                        {['Destination Guides', 'Lonely Planet Kids', 'Lonely Planet Shop', 'Non-English Guides'].map((shopItem) => (
+                        {['Destination Guides', 'Lonely Planet Kids', 'Non-English Guides'].map((shopItem) => (
                             <li key={shopItem}>
                                 <a href="#" className="hover:underline dark:text-gray-300">
                                     {shopItem}
