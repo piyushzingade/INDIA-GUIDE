@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Guide</title>
+  <link id="theme-stylesheet" rel="stylesheet" href="/light-mode.css" />
+</head>
+
+<body>
+  <div id="root"></div>
+  <button id="theme-toggle"></button>
+  <script type="module" src="/src/main.tsx"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeStylesheet = document.getElementById('theme-stylesheet');
+
+      themeToggle.addEventListener('click', () => {
+        if (themeStylesheet.getAttribute('href') === '/light-mode.css') {
+          themeStylesheet.setAttribute('href', '/dark-mode.css');
+          localStorage.setItem('theme', 'dark');
+        } else {
+          themeStylesheet.setAttribute('href', '/light-mode.css');
+          localStorage.setItem('theme', 'light');
+        }
+      });
+
+      // Set initial theme based on saved preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        themeStylesheet.setAttribute('href', savedTheme === 'dark' ? '/dark-mode.css' : '/light-mode.css');
+      }
+    });
+  </script>
+</body>
+
+</html>
