@@ -67,10 +67,12 @@ export default function TravelSection() {
     return (
         <div className="relative flex justify-center items-center dark:bg-gray-900 dark:text-white">
             {/* Main Heading Over All Images */}
-            <h1 className="absolute top-1/2 transform -translate-y-1/2 text-4xl font-bold z-10 pointer-events-none">
-                Discover story-worthy travel moments
+            <h1 className="absolute    mb-8 text-3xl  max-w-4xl font-semibold md:text-6xl text-center font-display z-10 pointer-events-none">
+                Discover <span className="whitespace-nowrap">story-worthy</span> travel moments
             </h1>
-
+            {/* <h1 className="text-3xl font-display md:text-6xl font-semibold max-w-4xl text-center text-white mb-8">
+                Discover <span className="whitespace-nowrap">story-worthy</span> travel moments
+            </h1> */}
             {/* Items */}
             {currentContent.images.map((src, index) => (
                 <div
