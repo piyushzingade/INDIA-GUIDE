@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { FaSearch, FaMoon, FaSun } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-
+import Destinationmenu from '../Destinationmenu';
 
 export default function Header() {
     const [darkMode, setDarkMode] = useState(false); // State to track dark mode
     const [menuOpen, setMenuOpen] = useState(false); // State to track menu visibility on smaller screens
+    const [showDestinationMenu, setShowDestinationMenu] = useState(false); // State for DestinationMenu visibility
 
     const toggleTheme = () => {
         setDarkMode(!darkMode);
@@ -14,6 +15,14 @@ export default function Header() {
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
+    };
+
+    const toggleDestinationMenu = () => {
+        setShowDestinationMenu(!showDestinationMenu);
+    };
+
+    const closeDestinationMenu = () => {
+        setShowDestinationMenu(false);
     };
 
     return (
@@ -25,17 +34,40 @@ export default function Header() {
                 </Link>
 
                 {/* Menu Links for larger screens */}
-                <nav className="hidden md:flex space-x-6">
-                    <Link to="/destination" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
-                        Destination
-                    </Link>
-                    <Link to="/inspiration" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                <nav className="hidden md:flex space-x-6 relative">
+                    <div className="relative">
+                        {/* Using span instead of Link for Destination */}
+                        <span
+                            className={`cursor-pointer hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={toggleDestinationMenu}
+                        >
+                            Destination
+                        </span>
+                        {showDestinationMenu && (
+                            <div className="absolute left-0 top-full z-10">
+                                <Destinationmenu showMenu={showDestinationMenu} />
+                            </div>
+                        )}
+                    </div>
+                    <Link
+                        to="/inspiration"
+                        className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                        onClick={closeDestinationMenu}
+                    >
                         Inspiration
                     </Link>
-                    <Link to="/posts" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                    <Link
+                        to="/posts"
+                        className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                        onClick={closeDestinationMenu}
+                    >
                         Posts
                     </Link>
-                    <Link to="/shop" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                    <Link
+                        to="/shop"
+                        className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                        onClick={closeDestinationMenu}
+                    >
                         Shop
                     </Link>
                 </nav>
@@ -45,11 +77,17 @@ export default function Header() {
             <div className="flex items-center space-x-4">
                 {/* Search and Saves for larger screens */}
                 <div className="hidden md:flex space-x-4">
-                    <div className={`hover:text-blue-500 cursor-pointer flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
+                    <div
+                        className={`hover:text-blue-500 cursor-pointer flex items-center ${darkMode ? 'text-white' : 'text-black'}`}
+                        onClick={closeDestinationMenu}
+                    >
                         <FaSearch className="mr-2" />
                         Search
                     </div>
-                    <div className={`hover:text-blue-500 cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}>
+                    <div
+                        className={`hover:text-blue-500 cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}
+                        onClick={closeDestinationMenu}
+                    >
                         Saves
                     </div>
                 </div>
@@ -63,7 +101,11 @@ export default function Header() {
                 </button>
 
                 {/* Sign In button for larger screens */}
-                <Link to="/signin" className={`hidden md:block bg-blue-600 text-white rounded-md shadow px-4 py-2 ${darkMode ? 'bg-blue-800' : 'bg-blue-600'}`}>
+                <Link
+                    to="/signin"
+                    className={`hidden md:block bg-blue-600 text-white rounded-md shadow px-4 py-2 ${darkMode ? 'bg-blue-800' : 'bg-blue-600'}`}
+                    onClick={closeDestinationMenu}
+                >
                     Sign In
                 </Link>
 
@@ -88,26 +130,52 @@ export default function Header() {
             {menuOpen && (
                 <div className={`absolute top-16 left-0 w-full bg-white dark:bg-gray-900 p-4 md:hidden`}>
                     <nav className="flex flex-col space-y-4">
-                        <Link to="/destination" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                        {/* Using span instead of Link for Destination */}
+                        <span
+                            className={`cursor-pointer hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={toggleDestinationMenu}
+                        >
                             Destination
-                        </Link>
-                        <Link to="/inspiration" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                        </span>
+                        <Link
+                            to="/inspiration"
+                            className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={closeDestinationMenu}
+                        >
                             Inspiration
                         </Link>
-                        <Link to="/posts" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                        <Link
+                            to="/posts"
+                            className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={closeDestinationMenu}
+                        >
                             Posts
                         </Link>
-                        <Link to="/shop" className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}>
+                        <Link
+                            to="/shop"
+                            className={`hover:text-blue-500 ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={closeDestinationMenu}
+                        >
                             Shop
                         </Link>
-                        <div className={`hover:text-blue-500 cursor-pointer flex items-center ${darkMode ? 'text-white' : 'text-black'}`}>
+                        <div
+                            className={`hover:text-blue-500 cursor-pointer flex items-center ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={closeDestinationMenu}
+                        >
                             <FaSearch className="mr-2" />
                             Search
                         </div>
-                        <div className={`hover:text-blue-500 cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}>
+                        <div
+                            className={`hover:text-blue-500 cursor-pointer ${darkMode ? 'text-white' : 'text-black'}`}
+                            onClick={closeDestinationMenu}
+                        >
                             Saves
                         </div>
-                        <Link to="/signin" className={`bg-blue-600 text-white rounded-md shadow px-4 py-2 w-full ${darkMode ? 'bg-blue-800' : 'bg-blue-600'}`}>
+                        <Link
+                            to="/signin"
+                            className={`bg-blue-600 text-white rounded-md shadow px-4 py-2 w-full ${darkMode ? 'bg-blue-800' : 'bg-blue-600'}`}
+                            onClick={closeDestinationMenu}
+                        >
                             Sign In
                         </Link>
                     </nav>
